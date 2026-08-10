@@ -1,0 +1,14 @@
+C:\Workspace\Thuc hanh cac mon nam 3\Ki2\Lập Trình Web\pta_lession01\pta_lession01\bin\Debug\net10.0\pta_lession01.exe
+C:\Workspace\Thuc hanh cac mon nam 3\Ki2\Lập Trình Web\pta_lession01\pta_lession01\bin\Debug\net10.0\pta_lession01.deps.json
+C:\Workspace\Thuc hanh cac mon nam 3\Ki2\Lập Trình Web\pta_lession01\pta_lession01\bin\Debug\net10.0\pta_lession01.runtimeconfig.json
+C:\Workspace\Thuc hanh cac mon nam 3\Ki2\Lập Trình Web\pta_lession01\pta_lession01\bin\Debug\net10.0\pta_lession01.dll
+C:\Workspace\Thuc hanh cac mon nam 3\Ki2\Lập Trình Web\pta_lession01\pta_lession01\bin\Debug\net10.0\pta_lession01.pdb
+C:\Workspace\Thuc hanh cac mon nam 3\Ki2\Lập Trình Web\pta_lession01\pta_lession01\obj\Debug\net10.0\pta_lession01.GeneratedMSBuildEditorConfig.editorconfig
+C:\Workspace\Thuc hanh cac mon nam 3\Ki2\Lập Trình Web\pta_lession01\pta_lession01\obj\Debug\net10.0\pta_lession01.AssemblyInfoInputs.cache
+C:\Workspace\Thuc hanh cac mon nam 3\Ki2\Lập Trình Web\pta_lession01\pta_lession01\obj\Debug\net10.0\pta_lession01.AssemblyInfo.cs
+C:\Workspace\Thuc hanh cac mon nam 3\Ki2\Lập Trình Web\pta_lession01\pta_lession01\obj\Debug\net10.0\pta_lession01.csproj.CoreCompileInputs.cache
+C:\Workspace\Thuc hanh cac mon nam 3\Ki2\Lập Trình Web\pta_lession01\pta_lession01\obj\Debug\net10.0\pta_lession01.dll
+C:\Workspace\Thuc hanh cac mon nam 3\Ki2\Lập Trình Web\pta_lession01\pta_lession01\obj\Debug\net10.0\refint\pta_lession01.dll
+C:\Workspace\Thuc hanh cac mon nam 3\Ki2\Lập Trình Web\pta_lession01\pta_lession01\obj\Debug\net10.0\pta_lession01.pdb
+C:\Workspace\Thuc hanh cac mon nam 3\Ki2\Lập Trình Web\pta_lession01\pta_lession01\obj\Debug\net10.0\pta_lession01.genruntimeconfig.cache
+C:\Workspace\Thuc hanh cac mon nam 3\Ki2\Lập Trình Web\pta_lession01\pta_lession01\obj\Debug\net10.0\ref\pta_lession01.dll
