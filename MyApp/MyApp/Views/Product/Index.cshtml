@@ -1,0 +1,43 @@
+@model IEnumerable<MyApp.Models.Product>
+@{
+    ViewData["Title"] = "Quản lý sản phẩm";
+}
+
+<div class="product-management mt-2">
+    <h3 class="mb-4 text-dark fw-normal">Quản lý sản phẩm</h3>
+
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead>
+                <tr class="text-secondary fw-semibold">
+                    <th scope="col" style="width: 80px;">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Created At</th>
+                    <th scope="col" class="text-center" style="width: 120px;">Image</th>
+                    <th scope="col" class="text-center" style="width: 120px;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="fw-normal">@item.Id</td>
+                            <td>@item.Name</td>
+                            <td>@(string.Format(System.Globalization.CultureInfo.GetCultureInfo("en-US"), "{0:N0} đ", item.Price))</td>
+                            <td>@item.CreatedAt.ToString("dd-MM-yyyy")</td>
+                            <td class="text-center">
+                                <img src="@item.Image" alt="@item.Name" class="img-thumbnail" style="max-height: 55px; max-width: 65px; object-fit: contain; background-color: #fff; border: 1px solid #dee2e6;" />
+                            </td>
+                            <td class="text-center">
+                                <a href="javascript:void(0)" class="btn btn-success btn-sm px-3 py-1">View</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

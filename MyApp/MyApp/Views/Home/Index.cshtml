@@ -1,0 +1,71 @@
+@model IEnumerable<MyApp.Models.Product>
+@{
+    ViewData["Title"] = "Trang chủ";
+}
+
+<!-- Azure Carousel Banner -->
+<div id="azureCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#azureCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#azureCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#azureCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner rounded-1 overflow-hidden">
+        <div class="carousel-item active">
+            <div class="azure-hero-banner text-white text-center d-flex flex-column justify-content-center align-items-center">
+                <div class="d-flex justify-content-center align-items-center gap-3 mb-3 flex-wrap">
+                    <h2 class="display-6 fw-normal me-2 mb-0">Microsoft Azure</h2>
+                    <div class="azure-icons d-flex gap-3 align-items-center">
+                        <span class="azure-icon-badge bg-info bg-opacity-75">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
+                        </span>
+                        <span class="azure-icon-badge bg-primary bg-opacity-75">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 2L4 7v10l8 5 8-5V7l-8-5zm0 2.2L18 8.1v7.8L12 19.8 6 15.9V8.1L12 4.2zM12 9a3 3 0 100 6 3 3 0 000-6z"/></svg>
+                        </span>
+                        <span class="azure-icon-badge bg-primary text-white fw-bold d-inline-flex justify-content-center align-items-center" style="font-size: 13px;">
+                            DB
+                        </span>
+                        <span class="azure-icon-badge bg-warning bg-opacity-75">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M3 3h8v8H3zm10 0h8v8h-8zM3 13h8v8H3zm10 0h8v8h-8z"/></svg>
+                        </span>
+                    </div>
+                </div>
+                <p class="azure-banner-desc mb-3">
+                    Learn how Microsoft's Azure cloud platform allows you to build, deploy, and scale web apps.
+                    <a href="https://azure.microsoft.com" target="_blank" class="btn btn-light btn-sm ms-2 px-2 py-0 align-baseline text-dark" style="font-size: 0.85rem;">Learn More</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#azureCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#azureCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<!-- Danh sách sản phẩm -->
+<div class="product-section">
+    <h4 class="mb-4 text-dark fw-normal">Danh sách sản phẩm</h4>
+    <div class="row g-4">
+        @if (Model != null)
+        {
+            @foreach (var item in Model)
+            {
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="card h-100 border text-center p-3 product-item-card">
+                        <div class="product-thumb-container d-flex align-items-center justify-content-center">
+                            <img src="@item.Image" class="img-fluid" alt="@item.Name">
+                        </div>
+                        <div class="card-body p-2 mt-2">
+                            <div class="product-item-title text-secondary">@item.Name</div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
