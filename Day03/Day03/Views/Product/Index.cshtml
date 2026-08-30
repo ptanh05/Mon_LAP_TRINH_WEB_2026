@@ -1,0 +1,44 @@
+@model Day03.Models.ProductViewModel
+
+@{
+    ViewData["Title"] = "Sản phẩm";
+}
+
+<div class="row">
+    <!-- Cột danh mục bên trái -->
+    <div class="col-md-3">
+        <h4><strong>DANH MỤC</strong></h4>
+        <div class="list-group">
+            @foreach (var category in Model.Categories)
+            {
+                <a href="/san-pham?categoryId=@category.Id"
+                   class="list-group-item list-group-item-action @(Model.SelectedCategoryId == category.Id ? "active" : "")">
+                    @category.Name
+                </a>
+            }
+        </div>
+    </div>
+
+    <!-- Cột sản phẩm bên phải -->
+    <div class="col-md-9">
+        <h4><strong>Danh sách sản phẩm</strong></h4>
+        <div class="row">
+            @foreach (var product in Model.Products)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="@product.Image" class="card-img-top" alt="@product.Name" style="height: 200px; object-fit: contain; padding: 10px;" />
+                        <div class="card-body text-center">
+                            <h6 class="card-title">@product.Name</h6>
+                            <p class="card-text">
+                                <span style="text-decoration: line-through; color: gray;">Giá: @product.Price.ToString("N0")</span>
+                                <span class="text-danger"> Giá: @product.SalePrice.ToString("N0")</span>
+                            </p>
+                            <a href="/san-pham/chi-tiet/@product.Id" class="btn btn-success btn-sm">Chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

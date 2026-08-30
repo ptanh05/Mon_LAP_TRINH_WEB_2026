@@ -1,0 +1,27 @@
+@model Day03.Models.Product
+
+@{
+    ViewData["Title"] = "Chi tiết sản phẩm";
+}
+
+<h4><strong><u>Chi tiết sản phẩm</u></strong></h4>
+<hr />
+
+<div class="row mt-4">
+    <div class="col-md-5">
+        <img src="@Model.Image" class="img-fluid" alt="@Model.Name" />
+    </div>
+    <div class="col-md-7">
+        <h3><strong>Sản phẩm: @Model.Name</strong></h3>
+        <p>
+            <strong>Giá gốc: @Model.Price.ToString("N0")</strong>
+            <strong> Giá mới: @Model.SalePrice.ToString("N0")</strong>
+        </p>
+        <h5><strong>Mô Tả:</strong></h5>
+        <p>@Model.Description</p>
+        <h5><strong>Trạng thái: @Model.Status</strong></h5>
+        <h5><strong>Ngày đăng: @Model.CreatedAt.ToString("dd/MM/yyyy h:mm:ss tt")</strong></h5>
+        <br />
+        <a href="/san-pham" class="btn btn-dark">Về danh sách</a>
+    </div>
+</div>
