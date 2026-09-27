@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Workspace\\Thuc hanh cac mon nam 3\\N\u0103m 4\\Mon_LAP_TRINH_WEB_2026\\PtaLesson04Review\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{55C0DFDC-E2E2-4522-9BD9-58A8B857BDD4}|PtaLesson04Review\\PtaLesson04Review.csproj|c:\\workspace\\thuc hanh cac mon nam 3\\n\u0103m 4\\mon_lap_trinh_web_2026\\ptalesson04review\\ptalesson04review\\views\\shared\\_headerpartialview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{55C0DFDC-E2E2-4522-9BD9-58A8B857BDD4}|PtaLesson04Review\\PtaLesson04Review.csproj|solutionrelative:ptalesson04review\\views\\shared\\_headerpartialview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "_HeaderPartialView.cshtml",
+              "DocumentMoniker": "C:\\Workspace\\Thuc hanh cac mon nam 3\\N\u0103m 4\\Mon_LAP_TRINH_WEB_2026\\PtaLesson04Review\\PtaLesson04Review\\Views\\Shared\\_HeaderPartialView.cshtml",
+              "RelativeDocumentMoniker": "PtaLesson04Review\\Views\\Shared\\_HeaderPartialView.cshtml",
+              "ToolTip": "C:\\Workspace\\Thuc hanh cac mon nam 3\\N\u0103m 4\\Mon_LAP_TRINH_WEB_2026\\PtaLesson04Review\\PtaLesson04Review\\Views\\Shared\\_HeaderPartialView.cshtml",
+              "RelativeToolTip": "PtaLesson04Review\\Views\\Shared\\_HeaderPartialView.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-09-07T00:29:43.932Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
