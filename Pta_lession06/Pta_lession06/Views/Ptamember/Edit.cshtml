@@ -1,0 +1,49 @@
+@model Pta_lession06.Models.Ptamember
+
+@{
+    ViewData["Title"] = "Chỉnh sửa thành viên";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm border-0 col-md-8 mx-auto">
+        <div class="card-header bg-warning text-dark">
+            <h4 class="mb-0">Chỉnh sửa thông tin thành viên (Model Binding Update)</h4>
+        </div>
+        <div class="card-body">
+            <form asp-action="Edit" method="post">
+                @* Trường ẩn lưu Id để ánh xạ đúng bản ghi khi submit *@
+                <input type="hidden" asp-for="PtamemberId" />
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Mã thành viên</label>
+                    <input class="form-control bg-light" value="@Model.PtamemberId" disabled />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="PtamemberUserName" class="form-label fw-bold">Tên đăng nhập (*)</label>
+                    <input asp-for="PtamemberUserName" class="form-control" required />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="PtamemberFullName" class="form-label fw-bold">Họ và tên (*)</label>
+                    <input asp-for="PtamemberFullName" class="form-control" required />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="PtamemberPassword" class="form-label fw-bold">Mật khẩu (*)</label>
+                    <input asp-for="PtamemberPassword" class="form-control" required />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="PtamemberEmail" class="form-label fw-bold">Email (*)</label>
+                    <input asp-for="PtamemberEmail" type="email" class="form-control" required />
+                </div>
+
+                <div class="d-flex justify-content-between mt-4">
+                    <a asp-action="Index" class="btn btn-secondary">&larr; Quay lại danh sách</a>
+                    <button type="submit" class="btn btn-primary px-4">Cập nhật thay đổi</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+@model Pta_lession06.Models.Ptamember
+
+@{
+    ViewData["Title"] = "Thông tin chi tiết thành viên";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm border-0 col-md-8 mx-auto">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Thông tin chi tiết thành viên (Strongly Typed View - @("@model"))</h4>
+        </div>
+        <div class="card-body">
+            <dl class="row mb-0">
+                <dt class="col-sm-4 text-muted">Mã thành viên (ID):</dt>
+                <dd class="col-sm-8 fw-bold">@Model.PtamemberId</dd>
+
+                <dt class="col-sm-4 text-muted">Tên đăng nhập (UserName):</dt>
+                <dd class="col-sm-8">@Model.PtamemberUserName</dd>
+
+                <dt class="col-sm-4 text-muted">Họ và tên (FullName):</dt>
+                <dd class="col-sm-8 text-primary fw-bold">@Model.PtamemberFullName</dd>
+
+                <dt class="col-sm-4 text-muted">Mật khẩu (Password):</dt>
+                <dd class="col-sm-8">@Model.PtamemberPassword</dd>
+
+                <dt class="col-sm-4 text-muted">Địa chỉ Email:</dt>
+                <dd class="col-sm-8">@Model.PtamemberEmail</dd>
+            </dl>
+        </div>
+        <div class="card-footer bg-light d-flex justify-content-between">
+            <a asp-action="Index" class="btn btn-secondary">&larr; Quay lại danh sách</a>
+            <a asp-action="Edit" asp-route-id="@Model.PtamemberId" class="btn btn-warning">Chỉnh sửa thông tin</a>
+        </div>
+    </div>
+</div>
