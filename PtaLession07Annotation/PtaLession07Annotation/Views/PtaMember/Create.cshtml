@@ -1,0 +1,52 @@
+@model PtaLession07Annotation.Models.PtaMember
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>PtaMember</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="PtaUsername" class="control-label"></label>
+                <input asp-for="PtaUsername" class="form-control" />
+                <span asp-validation-for="PtaUsername" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="PtaPassword" class="control-label"></label>
+                <input asp-for="PtaPassword" class="form-control" />
+                <span asp-validation-for="PtaPassword" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="PtaEmail" class="control-label"></label>
+                <input asp-for="PtaEmail" class="form-control" />
+                <span asp-validation-for="PtaEmail" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="PtaPhone" class="control-label"></label>
+                <input asp-for="PtaPhone" class="form-control" />
+                <span asp-validation-for="PtaPhone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
