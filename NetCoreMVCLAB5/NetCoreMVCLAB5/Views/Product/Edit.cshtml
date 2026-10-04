@@ -1,0 +1,100 @@
+@model NetCoreMVCLAB5.Models.Product
+
+@{
+    ViewData["Title"] = "Chỉnh sửa Sản phẩm";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-warning text-dark py-3">
+                    <h4 class="mb-0 fw-bold">Chỉnh sửa Sản phẩm</h4>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="Edit" method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+                        <input type="hidden" asp-for="Id" />
+
+                        <!-- Tên sản phẩm -->
+                        <div class="mb-3">
+                            <label asp-for="Name" class="form-label fw-bold"></label>
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Danh mục sản phẩm (ComboBox) -->
+                        <div class="mb-3">
+                            <label asp-for="CategoryId" class="form-label fw-bold"></label>
+                            <select asp-for="CategoryId" asp-items="ViewBag.CategoryId" class="form-select">
+                                <option value="">-- Chọn danh mục sản phẩm --</option>
+                            </select>
+                            <span asp-validation-for="CategoryId" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Giá chuẩn & Giá khuyến mãi -->
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Price" class="form-label fw-bold"></label>
+                                <div class="input-group">
+                                    <input asp-for="Price" type="number" step="1000" class="form-control" />
+                                    <span class="input-group-text">VNĐ</span>
+                                </div>
+                                <span asp-validation-for="Price" class="text-danger small"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="SalePrice" class="form-label fw-bold"></label>
+                                <div class="input-group">
+                                    <input asp-for="SalePrice" type="number" step="1000" class="form-control" />
+                                    <span class="input-group-text">VNĐ</span>
+                                </div>
+                                <span asp-validation-for="SalePrice" class="text-danger small"></span>
+                            </div>
+                        </div>
+
+                        <!-- Hình ảnh hiện tại & Upload ảnh mới -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Hình ảnh hiện tại</label>
+                            <div class="d-flex align-items-center mb-2">
+                                @if (!string.IsNullOrEmpty(Model.Image))
+                                {
+                                    <img src="@Model.Image" alt="@Model.Name" class="img-thumbnail me-3" style="width: 80px; height: 80px; object-fit: cover;" onerror="this.src='https://placehold.co/80x80?text=No+Image';" />
+                                    <span class="text-muted small">@Model.Image</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary me-3">Chưa có ảnh</span>
+                                }
+                            </div>
+                            <label asp-for="ImageFile" class="form-label fw-bold">Chọn ảnh mới (nếu muốn đổi ảnh)</label>
+                            <input asp-for="ImageFile" type="file" class="form-control" accept="image/*" />
+                            <span asp-validation-for="ImageFile" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Mô tả -->
+                        <div class="mb-4">
+                            <label asp-for="Description" class="form-label fw-bold"></label>
+                            <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+                            <span asp-validation-for="Description" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-secondary">
+                                &larr; Quay lại danh sách
+                            </a>
+                            <button type="submit" class="btn btn-warning px-4 fw-semibold">
+                                Cập nhật thay đổi
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,88 @@
+@model NetCoreMVCLAB5.Models.Product
+
+@{
+    ViewData["Title"] = "Thêm mới Sản phẩm";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-primary text-white py-3">
+                    <h4 class="mb-0 fw-bold">Thêm mới Sản phẩm</h4>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="Create" method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+                        <!-- Tên sản phẩm -->
+                        <div class="mb-3">
+                            <label asp-for="Name" class="form-label fw-bold"></label>
+                            <input asp-for="Name" class="form-control" placeholder="Nhập tên sản phẩm (từ 6 đến 150 ký tự)" />
+                            <span asp-validation-for="Name" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Danh mục sản phẩm (ComboBox) -->
+                        <div class="mb-3">
+                            <label asp-for="CategoryId" class="form-label fw-bold"></label>
+                            <select asp-for="CategoryId" asp-items="ViewBag.CategoryId" class="form-select">
+                                <option value="">-- Chọn danh mục sản phẩm --</option>
+                            </select>
+                            <span asp-validation-for="CategoryId" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Giá chuẩn & Giá khuyến mãi -->
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Price" class="form-label fw-bold"></label>
+                                <div class="input-group">
+                                    <input asp-for="Price" type="number" step="1000" class="form-control" placeholder="Tối thiểu 100.000" />
+                                    <span class="input-group-text">VNĐ</span>
+                                </div>
+                                <span asp-validation-for="Price" class="text-danger small"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="SalePrice" class="form-label fw-bold"></label>
+                                <div class="input-group">
+                                    <input asp-for="SalePrice" type="number" step="1000" class="form-control" placeholder="Nhỏ hơn giá chuẩn ít nhất 10%" />
+                                    <span class="input-group-text">VNĐ</span>
+                                </div>
+                                <span asp-validation-for="SalePrice" class="text-danger small"></span>
+                            </div>
+                        </div>
+
+                        <!-- Hình ảnh upload -->
+                        <div class="mb-3">
+                            <label asp-for="ImageFile" class="form-label fw-bold"></label>
+                            <input asp-for="ImageFile" type="file" class="form-control" accept="image/*" />
+                            <span asp-validation-for="ImageFile" class="text-danger small"></span>
+                            <div class="form-text">Ảnh sẽ được lưu tự động vào thư mục <code>wwwroot/products</code>.</div>
+                        </div>
+
+                        <!-- Mô tả -->
+                        <div class="mb-4">
+                            <label asp-for="Description" class="form-label fw-bold"></label>
+                            <textarea asp-for="Description" class="form-control" rows="4" placeholder="Nhập mô tả chi tiết sản phẩm (tối đa 1500 ký tự, không chứa từ nhạy cảm)..."></textarea>
+                            <span asp-validation-for="Description" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-secondary">
+                                &larr; Quay lại danh sách
+                            </a>
+                            <button type="submit" class="btn btn-primary px-4 fw-semibold">
+                                Lưu sản phẩm
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
