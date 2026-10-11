@@ -25,6 +25,8 @@ namespace NetCoreMVCLAB5.Models
         public string Email { get; set; } = string.Empty;
 
         [Display(Name = "Phone")]
+        [DataType(DataType.PhoneNumber)]
+        [Remove(action: "VerifyPhone", Controller: "Account", ErrorMessage = "Phone number is required")]
         public string? Phone { get; set; }
 
         [Display(Name = "Address")]
