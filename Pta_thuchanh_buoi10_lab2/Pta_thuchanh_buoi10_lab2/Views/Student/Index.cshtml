@@ -1,0 +1,71 @@
+@{
+    ViewData["Title"] = "Student List";
+    Layout = "~/Views/Shared/MyLayoutHelper.cshtml";
+}
+@model IEnumerable<Pta_thuchanh_buoi10_lab2.Models.Student>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mt-2">Danh sách sinh viên</h2>
+    <a asp-action="Create" class="btn btn-primary">Create Student</a>
+</div>
+
+<div class="card mb-4 shadow-sm">
+    <div class="card-header bg-dark text-white">
+        <i class="fas fa-table me-1"></i>
+        Student List
+    </div>
+    <div class="card-body">
+        <table class="table table-striped table-bordered table-hover align-middle mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th>Mã</th>
+                    <th>Họ tên</th>
+                    <th>Ngày sinh</th>
+                    <th>Ngành</th>
+                    <th>Giới tính</th>
+                    <th>Hệ ĐT</th>
+                    <th>Địa chỉ</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    foreach (var s in Model)
+                    {
+                        <tr>
+                            <td>@s.Id</td>
+                            <td>@s.Name</td>
+                            <td>@s.DateOfBorth.ToString("M/d/yyyy hh:mm:ss tt")</td>
+                            <td>
+                                @switch (s.Branch)
+                                {
+                                    case Branch.IT: <span>CNTT</span>; break;
+                                    case Branch.BE: <span>Kinh tế</span>; break;
+                                    case Branch.CE: <span>Công trình</span>; break;
+                                    case Branch.EE: <span>Điện - Điện tử</span>; break;
+                                    default: <span>@s.Branch</span>; break;
+                                }
+                            </td>
+                            <td>@(s.Gender == Gender.Male ? "Nam" : "Nữ")</td>
+                            <td>@(s.IsRegular ? "Chính quy" : "Phi chính quy")</td>
+                            <td>@s.Address</td>
+                            <td>@s.Email</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        var table = document.querySelector("table");
+        if (table) {
+            table.onclick = function onTableClick() {
+                table.style = "background-color: yellow;";
+            };
+        }
+    </script>
+}
