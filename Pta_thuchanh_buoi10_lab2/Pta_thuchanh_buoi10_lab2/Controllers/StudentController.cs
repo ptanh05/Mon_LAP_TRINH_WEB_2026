@@ -41,7 +41,9 @@ namespace Pta_thuchanh_buoi10_lab2.Controllers
             _env = env;
         }
 
+        [Route("")]
         [Route("Admin/Student/List")]
+        [Route("Students/List")]
         [Route("Student/Index")]
         [Route("Student")]
         public IActionResult Index()

@@ -8,7 +8,7 @@ namespace Pta_thuchanh_buoi10_lab2.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index", "Student");
         }
 
         public IActionResult Privacy()
