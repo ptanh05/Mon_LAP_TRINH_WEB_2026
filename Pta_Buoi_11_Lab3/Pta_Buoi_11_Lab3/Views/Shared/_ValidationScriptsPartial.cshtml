@@ -1,0 +1,18 @@
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+<script>
+    if ($.validator) {
+        var defaultRangeValidator = $.validator.methods.range;
+        $.validator.methods.range = function (value, element, param) {
+            if (element.type === "date" || (param[0] && param[0].toString().includes("/"))) {
+                var minDate = new Date(param[0]);
+                var maxDate = new Date(param[1]);
+                var valDate = new Date(value);
+                if (!isNaN(minDate.getTime()) && !isNaN(maxDate.getTime()) && !isNaN(valDate.getTime())) {
+                    return this.optional(element) || (valDate >= minDate && valDate <= maxDate);
+                }
+            }
+            return defaultRangeValidator.call(this, value, element, param);
+        };
+    }
+</script>
