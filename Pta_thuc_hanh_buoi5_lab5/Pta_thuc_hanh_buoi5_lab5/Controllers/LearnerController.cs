@@ -15,30 +15,23 @@ namespace Pta_thuc_hanh_buoi5_lab5.Controllers
             db = context;
         }
 
-        // khai báo biến toàn cục pageSize
+        //khai báo biến toàn cục pageSize
         private int pageSize = 3;
-
-        public IActionResult Index(int? mid, string? keyword)
+        public IActionResult Index(int? mid)
         {
             var learners = (IQueryable<Learner>)db.Learners
                 .Include(m => m.Major);
             if (mid != null)
             {
-                learners = learners.Where(l => l.MajorID == mid);
-                ViewBag.mid = mid;
+                learners = (IQueryable<Learner>)db.Learners
+                    .Where(l => l.MajorID == mid)
+                    .Include(m => m.Major);
             }
-            if (!string.IsNullOrWhiteSpace(keyword))
-            {
-                keyword = keyword.Trim();
-                learners = learners.Where(l => l.FirstMidName.ToLower().Contains(keyword.ToLower())
-                                            || l.LastName.ToLower().Contains(keyword.ToLower()));
-                ViewBag.keyword = keyword;
-            }
-            // tính số trang
+            //tính số trang
             int pageNum = (int)Math.Ceiling(learners.Count() / (float)pageSize);
-            // trả số trang về view để hiển thị nav-trang
+            //trả số trang về view để hiển thị nav-trang
             ViewBag.pageNum = pageNum;
-            // lấy dữ liệu trang đầu
+            //lấy dữ liệu trang đầu
             var result = learners.Take(pageSize).ToList();
             return View(result);
         }
@@ -48,33 +41,32 @@ namespace Pta_thuc_hanh_buoi5_lab5.Controllers
         [Route("Learner/LearnerFilter")]
         public IActionResult LearnerFilter(int? mid, string? keyword, int? pageIndex)
         {
-            // lấy toàn bộ learners trong dbset chuyển về IQueryable<Learner> để query
-            var learners = (IQueryable<Learner>)db.Learners;
-            // lấy chỉ số trang, nếu chỉ số trang null thì gán ngầm định bằng 1
-            int page = (int)(pageIndex == null || pageIndex <= 0 ? 1 : pageIndex);
-            // nếu có mid thì lọc learner theo mid (chuyên ngành)
+            //lấy toàn bộ learners trong dbset chuyển về IQueryable<Learner> để query
+            var learners = (IQueryable<Learner>) db.Learners;
+            //lấy chỉ số trang, nếu chỉ số trang null thì gán ngầm định bằng 1
+            int page = (int) (pageIndex == null || pageIndex <= 0 ? 1 : pageIndex);
+            //nếu có mid thì lọc learner theo mid (chuyên ngành)
             if (mid != null)
             {
-                // lọc
+                //lọc
                 learners = learners.Where(l => l.MajorID == mid);
-                // gửi mid về view để ghi lại trên nav-phân trang
+                //gửi mid về view để ghi lại trên nav-phân trang
                 ViewBag.mid = mid;
             }
-            // nếu có keyword thì tìm kiếm theo tên hoặc họ
-            if (!string.IsNullOrWhiteSpace(keyword))
+            //nếu có keyword thì tìm kiếm theo tên
+            if (keyword != null)
             {
-                keyword = keyword.Trim();
-                // tìm kiếm
-                learners = learners.Where(l => l.FirstMidName.ToLower().Contains(keyword.ToLower())
-                                            || l.LastName.ToLower().Contains(keyword.ToLower()));
-                // gửi keyword về view để ghi trên nav-phân trang
+                //tìm kiếm
+                learners = learners.Where(l => l.FirstMidName.ToLower()
+                    .Contains(keyword.ToLower()));
+                //gửi keyword về view để ghi trên nav-phân trang
                 ViewBag.keyword = keyword;
             }
-            // tính số trang
+            //tính số trang
             int pageNum = (int)Math.Ceiling(learners.Count() / (float)pageSize);
-            // gửi số trang về view để hiển thị nav-trang
+            //gửi số trang về view để hiển thị nav-trang
             ViewBag.pageNum = pageNum;
-            // chọn dữ liệu trong trang hiện tại
+            //chọn dữ liệu trong trang hiện tại
             var result = learners.Skip(pageSize * (page - 1))
                 .Take(pageSize).Include(m => m.Major);
             return PartialView("LearnerTable", result);

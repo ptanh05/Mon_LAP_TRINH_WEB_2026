@@ -17,7 +17,7 @@
                 <td>@s.LearnerID</td>
                 <td>@s.FirstMidName</td>
                 <td>@s.LastName</td>
-                <td>@s.Major?.MajorName</td>
+                <td>@s.Major.MajorName</td>
                 <td>@s.EnrollmentDate</td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@s.LearnerID">Edit</a>|
@@ -32,9 +32,9 @@
     @for (int i = 1; i <= ViewBag.pageNum; i++)
     {
         <li class="page-item" page="@i"
-            @(ViewBag.mid != null ? "mid=" + ViewBag.mid : "")
-            @(ViewBag.keyword != null ? "keyword=" + ViewBag.keyword : "")>
-            <a class="page-link" style="cursor: pointer;">@i</a>
+            @(ViewBag.mid!=null? "mid=" + ViewBag.mid : "")
+            @(ViewBag.keyword!=null? "keyword=" + ViewBag.keyword : "")>
+            <a class="page-link">@i</a>
         </li>
     }
 </ul>
