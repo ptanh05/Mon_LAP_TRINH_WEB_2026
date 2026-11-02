@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Pta_thuc_hanh_buoi12_lab6.Data;
@@ -18,15 +18,21 @@ namespace Pta_thuc_hanh_buoi12_lab6.Controllers
         // khai báo biến toàn cục pageSize
         private int pageSize = 3;
 
-        public IActionResult Index(int? mid)
+        public IActionResult Index(int? mid, string? keyword)
         {
             var learners = (IQueryable<Learner>)db.Learners
                 .Include(m => m.Major);
             if (mid != null)
             {
-                learners = (IQueryable<Learner>)db.Learners
-                    .Where(l => l.MajorID == mid)
-                    .Include(m => m.Major);
+                learners = learners.Where(l => l.MajorID == mid);
+                ViewBag.mid = mid;
+            }
+            if (!string.IsNullOrWhiteSpace(keyword))
+            {
+                keyword = keyword.Trim();
+                learners = learners.Where(l => l.FirstMidName.ToLower().Contains(keyword.ToLower())
+                                            || l.LastName.ToLower().Contains(keyword.ToLower()));
+                ViewBag.keyword = keyword;
             }
             // tính số trang
             int pageNum = (int)Math.Ceiling(learners.Count() / (float)pageSize);
@@ -54,12 +60,13 @@ namespace Pta_thuc_hanh_buoi12_lab6.Controllers
                 // gửi mid về view để ghi lại trên nav-phân trang
                 ViewBag.mid = mid;
             }
-            // nếu có keyword thì tìm kiếm theo tên
-            if (keyword != null)
+            // nếu có keyword thì tìm kiếm theo tên hoặc họ
+            if (!string.IsNullOrWhiteSpace(keyword))
             {
+                keyword = keyword.Trim();
                 // tìm kiếm
-                learners = learners.Where(l => l.FirstMidName.ToLower()
-                    .Contains(keyword.ToLower()));
+                learners = learners.Where(l => l.FirstMidName.ToLower().Contains(keyword.ToLower())
+                                            || l.LastName.ToLower().Contains(keyword.ToLower()));
                 // gửi keyword về view để ghi trên nav-phân trang
                 ViewBag.keyword = keyword;
             }

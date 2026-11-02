@@ -7,10 +7,10 @@
     <h1>Learner List</h1>
     @await Component.InvokeAsync("Major")
     <!--Thêm form tìm kiếm-->
-    <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+    <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" onsubmit="return false;">
         <div class="input-group">
             <input id="keyword" class="form-control" name="keyword"
-                type="text" placeholder="Search learner"/>
+                type="text" placeholder="Search learner" value="@ViewBag.keyword"/>
             <button id="btnSearch" class="btn btn-primary" type="button">
                 <i class="fas fa-search"></i></button>
         </div>
@@ -60,43 +60,68 @@
 </div>
 @section Scripts{
 <script>
-    //thêm script ajax cho click vào page-item, nút search
+    // Hàm gọi filter dùng chung cho tất cả các thao tác AJAX
+    function loadLearners(mid, keyword, page) {
+        var data = {};
+        if (mid) data.mid = mid;
+        if (keyword !== undefined && keyword !== null) data.keyword = keyword;
+        if (page) data.pageIndex = page;
+
+        $.ajax({
+            url: '@Url.Action("LearnerFilter", "Learner")',
+            data: data,
+            success: function (response) {
+                $("div#content").html(response);
+            },
+            error: function () {
+                // Fallback nếu chạy url relative
+                $.ajax({
+                    url: "LearnerFilter",
+                    data: data,
+                    success: function (res) {
+                        $("div#content").html(res);
+                    }
+                });
+            }
+        });
+    }
+
+    // Sự kiện click vào trang phân trang
     $('body').on('click', 'li.page-item', function (e) {
+        e.preventDefault();
         var page = $(this).attr("page");
         var mid = $(this).attr("mid");
         var keyword = $(this).attr("keyword");
-        var data = { mid: mid, keyword: keyword, pageIndex: page };
-        $.ajax({
-            url: "LearnerFilter",
-            data: data,
-            success: function (response) {
-                $("div#content").html(response);
-            }
-        });
+        loadLearners(mid, keyword, page);
     });
 
-    $(".nav li").click(function (e) {
+    // Sự kiện click vào chuyên ngành
+    $('body').on('click', '.nav li', function (e) {
+        e.preventDefault();
         var id = $(this).attr("id");
-        var data = { mid: id };
-        $.ajax({
-            url: "LearnerFilter",
-            data: data,
-            success: function (response) {
-                $("div#content").html(response);
-            }
-        });
+        var keyword = $("#keyword").val();
+        loadLearners(id, keyword, 1);
     });
 
-    $("button#btnSearch").click(function (e) {
+    // Sự kiện click nút tìm kiếm
+    $('body').on('click', '#btnSearch, button#btnSearch', function (e) {
+        e.preventDefault();
         var keyword = $("#keyword").val();
-        var data = { keyword: keyword };
-        $.ajax({
-            url: "LearnerFilter",
-            data: data,
-            success: function (response) {
-                $("div#content").html(response);
-            }
-        });
+        var mid = $("li.page-item").first().attr("mid");
+        loadLearners(mid, keyword, 1);
+    });
+
+    // Ngăn chặn form submit và hỗ trợ nhấn Enter trong ô tìm kiếm
+    $('form').on('submit', function (e) {
+        e.preventDefault();
+        $('#btnSearch').click();
+    });
+
+    $('#keyword').on('keypress', function (e) {
+        if (e.which === 13) {
+            e.preventDefault();
+            $('#btnSearch').click();
+        }
     });
 </script>
 }
