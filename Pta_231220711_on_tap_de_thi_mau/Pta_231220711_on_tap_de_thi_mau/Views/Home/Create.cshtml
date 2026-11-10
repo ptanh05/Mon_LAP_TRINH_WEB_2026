@@ -1,0 +1,55 @@
+@model Pta_231220711_on_tap_de_thi_mau.Models.HangHoa
+@{
+    ViewData["Title"] = "Thêm Hàng Hóa Mới - Phùng Thế Anh";
+}
+
+<div class="content_top">
+    <div class="heading">
+        <h3>PHÙNG THẾ ANH</h3>
+    </div>
+    <div class="clear"></div>
+</div>
+
+<div style="margin: 20px 0;">
+    <h2 style="font-size: 20px; color: #333; margin-bottom: 20px; font-weight: bold;">Thêm Hàng Hóa Mới</h2>
+
+    <div style="max-width: 500px;">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger" style="color: red; margin-bottom: 15px;"></div>
+
+            <div style="margin-bottom: 15px;">
+                <label asp-for="MaLoai" style="display: block; font-weight: bold; margin-bottom: 5px;">Loại Hàng</label>
+                <select asp-for="MaLoai" asp-items="ViewBag.MaLoai" style="width: 100%; padding: 7px 10px; border: 1px solid #ccc; border-radius: 4px;"></select>
+                <span asp-validation-for="MaLoai" style="color: red; font-size: 13px; display: block; margin-top: 3px;"></span>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label asp-for="TenHang" style="display: block; font-weight: bold; margin-bottom: 5px;">Tên Hàng</label>
+                <input asp-for="TenHang" style="width: 100%; padding: 7px 10px; border: 1px solid #ccc; border-radius: 4px;" />
+                <span asp-validation-for="TenHang" style="color: red; font-size: 13px; display: block; margin-top: 3px;"></span>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label asp-for="Gia" style="display: block; font-weight: bold; margin-bottom: 5px;">Giá</label>
+                <input asp-for="Gia" type="number" step="any" style="width: 100%; padding: 7px 10px; border: 1px solid #ccc; border-radius: 4px;" />
+                <span asp-validation-for="Gia" style="color: red; font-size: 13px; display: block; margin-top: 3px;"></span>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label asp-for="Anh" style="display: block; font-weight: bold; margin-bottom: 5px;">Ảnh</label>
+                <input asp-for="Anh" placeholder="Ví dụ: Img_1.jpg" style="width: 100%; padding: 7px 10px; border: 1px solid #ccc; border-radius: 4px;" />
+                <span asp-validation-for="Anh" style="color: red; font-size: 13px; display: block; margin-top: 3px;"></span>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <input type="submit" value="Create" style="background: #383838; color: #fff; padding: 8px 25px; border: 1px solid #222; border-radius: 4px; cursor: pointer; font-size: 14px; font-weight: bold;" onmouseover="this.style.background='#B81D22'" onmouseout="this.style.background='#383838'" />
+                <a asp-action="Index" style="margin-left: 15px; color: #666; text-decoration: underline;">Quay lại danh sách</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

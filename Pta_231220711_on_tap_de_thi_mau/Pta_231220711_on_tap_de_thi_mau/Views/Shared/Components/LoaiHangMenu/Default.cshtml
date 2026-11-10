@@ -1,0 +1,16 @@
+@model IEnumerable<Pta_231220711_on_tap_de_thi_mau.Models.LoaiHang>
+
+<div class="menu">
+    <ul id="menu-loaihang">
+        <li class="active" data-id="0">
+            <a href="javascript:void(0);" onclick="loadHangHoa(null, this)">PHÙNG THẾ ANH</a>
+        </li>
+        @foreach (var item in Model)
+        {
+            <li data-id="@item.MaLoai">
+                <a href="javascript:void(0);" onclick="loadHangHoa(@item.MaLoai, this)">@item.TenLoai.ToUpper()</a>
+            </li>
+        }
+    </ul>
+</div>
+

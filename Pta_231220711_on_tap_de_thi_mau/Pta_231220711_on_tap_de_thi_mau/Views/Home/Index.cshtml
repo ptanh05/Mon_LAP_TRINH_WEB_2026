@@ -1,0 +1,49 @@
+@model IEnumerable<Pta_231220711_on_tap_de_thi_mau.Models.HangHoa>
+@{
+    ViewData["Title"] = "Trang Chủ - Phùng Thế Anh 231220711";
+}
+
+<div class="content_top">
+    <div class="heading">
+        <!-- Câu 3: Tiêu đề được thay thế bằng họ tên sinh viên -->
+        <h3>PHÙNG THẾ ANH</h3>
+    </div>
+    <div class="see">
+        <p><a asp-action="Create" style="font-weight: bold; color: #B81D22;">+ THÊM HÀNG HÓA MỚI</a></p>
+    </div>
+    <div class="clear"></div>
+</div>
+
+<!-- Câu 3 & 4: Vùng hiển thị danh sách hàng hóa lọc qua AJAX -->
+<div id="hanghoa-container">
+    @await Html.PartialAsync("_HangHoaListPartial", Model)
+</div>
+
+@section Scripts {
+    <script>
+        function loadHangHoa(maLoai, element) {
+            // Cập nhật trạng thái active cho menu
+            if (element) {
+                $('#menu-loaihang li').removeClass('active');
+                $(element).closest('li').addClass('active');
+            }
+
+            // Câu 4: Gọi AJAX để lọc danh sách hàng hóa
+            $.ajax({
+                url: '@Url.Action("FilterByLoai", "Home")',
+                type: 'GET',
+                data: { maLoai: maLoai },
+                beforeSend: function () {
+                    $('#hanghoa-container').html('<div style="text-align: center; padding: 40px; font-size: 16px; color: #666;">Đang tải danh sách hàng hóa...</div>');
+                },
+                success: function (data) {
+                    $('#hanghoa-container').html(data);
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                    alert('Lỗi khi tải dữ liệu hàng hóa!');
+                }
+            });
+        }
+    </script>
+}
