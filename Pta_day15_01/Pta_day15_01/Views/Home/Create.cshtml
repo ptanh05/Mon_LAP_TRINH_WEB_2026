@@ -1,0 +1,53 @@
+@model TaiSan
+@{
+    ViewData["Title"] = "Thêm tài sản mới";
+}
+
+<div class="create-box">
+    <h3 class="create-title">THÊM TÀI SẢN MỚI</h3>
+    <form asp-action="Create" method="post">
+        <div class="form-row">
+            <label asp-for="MaLoai">Loại tài sản</label>
+            <div class="form-field">
+                <select asp-for="MaLoai" asp-items="ViewBag.MaLoai" class="form-control"></select>
+                <span asp-validation-for="MaLoai" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <label asp-for="TenTs">Tên tài sản</label>
+            <div class="form-field">
+                <input asp-for="TenTs" class="form-control" />
+                <span asp-validation-for="TenTs" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <label asp-for="NguyenGia">Nguyên giá (triệu)</label>
+            <div class="form-field">
+                <input asp-for="NguyenGia" class="form-control" data-val-number="Nguyên giá phải là số từ 1 đến 2000" />
+                <span asp-validation-for="NguyenGia" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <label asp-for="Anh">Tên file ảnh</label>
+            <div class="form-field">
+                <input asp-for="Anh" class="form-control" />
+                <span asp-validation-for="Anh" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <label></label>
+            <div class="form-field form-actions">
+                <button type="submit" class="btn-create">Create</button>
+                <a asp-action="Index" class="btn-back">Quay lại</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
